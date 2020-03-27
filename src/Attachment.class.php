@@ -26,9 +26,11 @@ class Attachment {
 	 * @var Filesystem
 	 */
 	private $filesystem;
+	private $uploadDir;
 
 	public function __construct($filesystem) {
 		$this->filesystem = $filesystem;
+		$this->uploadDir = trim(wp_get_upload_dir()["subdir"], "/");
 	}
 
 	/**
@@ -56,7 +58,7 @@ class Attachment {
 	public function addAttachment($postID) {
 		if (wp_attachment_is_image($postID)) return;
 
-		$this->filesystem->upload(get_attached_file($postID));
+		$this->filesystem->upload($this->uploadDir . DIRECTORY_SEPARATOR . basename(get_attached_file($postID)));
 	}
 
 	/**
@@ -65,7 +67,7 @@ class Attachment {
 	 */
 	public function deleteAttachment($postID) {
 		if (!wp_attachment_is_image($postID)) {
-			$this->filesystem->delete(get_attached_file($postID));
+			$this->filesystem->delete($this->uploadDir . DIRECTORY_SEPARATOR . basename(get_attached_file($postID)));
 			return;
 		}
 
@@ -82,24 +84,19 @@ class Attachment {
 
 	/**
 	 * @param $filename
-	 * @param null $dir
 	 * @return mixed
 	 * @throws Exception
 	 */
-	public function handleFilename($filename, $dir = null) {
-		if ($dir == null) {
-			$dir = trim(wp_get_upload_dir()["subdir"], "/");
-		}
-
-		if (!$this->filesystem->exists($dir . DIRECTORY_SEPARATOR . $filename)) return $filename;
+	public function handleFilename($filename) {
+		if (!$this->filesystem->exists($this->uploadDir . DIRECTORY_SEPARATOR . $filename)) return $filename;
 
 		$ret = preg_replace_callback('/-(\d+)\.(\w+)$/', function ($m) {
 			return "-" . ($m[1] + 1) . "." . $m[2];
 		}, $filename);
-		if ($ret != $filename) return $this->handleFilename($ret, $dir);
+		if ($ret != $filename) return $this->handleFilename($ret);
 
 		$ret = preg_replace('/\.(\w+)$/', '-1.$1', $filename);
-		if ($ret != $filename) return $this->handleFilename($ret, $dir);
+		if ($ret != $filename) return $this->handleFilename($ret);
 
 		throw new Exception("could not compute unique file name");
 	}
