@@ -46,6 +46,8 @@ class Hook {
 	}
 
 	public function attachmentUrl($path) {
+		if (empty(Settings::$endpoint)) return $path;
+
 		$path["baseurl"] = Settings::$endpoint . "/" . Settings::$prefix;
 		return $path;
 	}
