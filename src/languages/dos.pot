@@ -1,0 +1,188 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-23 21:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: loader.php:27
+msgid ""
+"Plugin DigitalOcean Spaces Sync requires PHP 5.3.3 or higher. The plugin has "
+"now disabled itself."
+msgstr ""
+
+#: loader.php:39
+msgid ""
+"Plugin DigitalOcean Spaces Sync requires cURL 7.16.2+. The plugin has now "
+"disabled itself."
+msgstr ""
+
+#: loader.php:45
+msgid ""
+"Plugin DigitalOcean Spaces Sync requires that cURL is compiled with OpenSSL. "
+"The plugin has now disabled itself."
+msgstr ""
+
+#: code.php:144
+msgid "Connection is successfully established. Save the settings."
+msgstr ""
+
+#: code.php:150
+msgid "Connection is not established."
+msgstr ""
+
+#: code/settings_page.php:14
+msgid "Settings"
+msgstr ""
+
+#: code/settings_page.php:22
+msgid "Type in your DigitalOcean Spaces container access information."
+msgstr ""
+
+#: code/settings_page.php:23
+msgid "Don't have an account? <a href=\"https://goo.gl/SX2UwH\">Create it</a>"
+msgstr ""
+
+#: code/settings_page.php:36
+msgid "Connection settings"
+msgstr ""
+
+#: code/settings_page.php:48
+msgid "DO Spaces Key"
+msgstr ""
+
+#: code/settings_page.php:64
+msgid "DO Spaces Secret"
+msgstr ""
+
+#: code/settings_page.php:80
+msgid "DO Spaces Container"
+msgstr ""
+
+#: code/settings_page.php:96
+msgid "Endpoint"
+msgstr ""
+
+#: code/settings_page.php:104
+msgid "By default"
+msgstr ""
+
+#: code/settings_page.php:114
+msgid "Check the connection"
+msgstr ""
+
+#: code/settings_page.php:125
+msgid "File & Path settings"
+msgstr ""
+
+#: code/settings_page.php:137
+msgid "Full URL-path to files"
+msgstr ""
+
+#: code/settings_page.php:146
+msgid ""
+"Enter storage public domain or subdomain if the files are stored only in the "
+"cloud storage"
+msgstr ""
+
+#: code/settings_page.php:148
+msgid "or full URL path, if are kept both in cloud and on the server."
+msgstr ""
+
+#: code/settings_page.php:150
+msgid ""
+"In that case duplicates are created. If you change one, you change and the "
+"other,"
+msgstr ""
+
+#: code/settings_page.php:160
+msgid "Local path"
+msgstr ""
+
+#: code/settings_page.php:169
+msgid "Local path to the uploaded files. By default"
+msgstr ""
+
+#: code/settings_page.php:170
+msgid ""
+"Setting duplicates of the same name from the mediafiles settings. Changing "
+"one, you change and other"
+msgstr ""
+
+#: code/settings_page.php:180
+msgid "Storage prefix"
+msgstr ""
+
+#: code/settings_page.php:189
+msgid ""
+"The path to the file in the storage will appear as a prefix / path.<br />For "
+"example, in your case:"
+msgstr ""
+
+#: code/settings_page.php:200
+msgid "Filemask/Regex for ignored files"
+msgstr ""
+
+#: code/settings_page.php:208
+msgid "By default empty or"
+msgstr ""
+
+#: code/settings_page.php:209
+msgid ""
+"Will upload all the files by default, you are free to use any Regular "
+"Expression to match and ignore the selection you need, for example:"
+msgstr ""
+
+#: code/settings_page.php:222
+msgid "Sync settings"
+msgstr ""
+
+#: code/settings_page.php:236
+msgid "Store files only in the cloud and delete after successful upload."
+msgstr ""
+
+#: code/settings_page.php:237
+msgid ""
+"In that case file will be removed from your server after being uploaded to "
+"cloud storage, that saves you space."
+msgstr ""
+
+#: code/settings_page.php:250
+msgid ""
+"Delete file from cloud storage as soon as it was removed from your library."
+msgstr ""
+
+#: code/settings_page.php:263
+msgid "Enable debug mode. Do not enable unless you know what it is."
+msgstr ""
+
+#. Name of the plugin
+msgid "DigitalOcean Spaces Sync"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"This WordPress plugin syncs your media library with DigitalOcean Spaces "
+"Container."
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/keeross/DO-Spaces-Wordpress-Sync"
+msgstr ""
+
+#. Author of the plugin
+msgid "keeross"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/keeross"
+msgstr ""
