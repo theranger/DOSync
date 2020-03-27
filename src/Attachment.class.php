@@ -80,8 +80,28 @@ class Attachment {
 		}
 	}
 
-	public function handleFilename($filename) {
-		return $filename;
+	/**
+	 * @param $filename
+	 * @param null $dir
+	 * @return mixed
+	 * @throws Exception
+	 */
+	public function handleFilename($filename, $dir = null) {
+		if ($dir == null) {
+			$dir = trim(wp_get_upload_dir()["subdir"], "/");
+		}
+
+		if (!$this->filesystem->exists($dir . DIRECTORY_SEPARATOR . $filename)) return $filename;
+
+		$ret = preg_replace_callback('/-(\d+)\.(\w+)$/', function ($m) {
+			return "-" . ($m[1] + 1) . "." . $m[2];
+		}, $filename);
+		if ($ret != $filename) return $this->handleFilename($ret, $dir);
+
+		$ret = preg_replace('/\.(\w+)$/', '-1.$1', $filename);
+		if ($ret != $filename) return $this->handleFilename($ret, $dir);
+
+		throw new Exception("could not compute unique file name");
 	}
 }
 

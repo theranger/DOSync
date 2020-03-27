@@ -17,6 +17,7 @@
 
 namespace DOSync;
 
+use Aws\S3\Exception\S3Exception;
 use Exception;
 
 class Filesystem {
@@ -59,6 +60,20 @@ class Filesystem {
 	 */
 	public function delete($file) {
 		$this->client->delete($file);
+	}
+
+	/**
+	 * @param $file
+	 * @return bool
+	 * @throws Exception
+	 */
+	public function exists($file) {
+		try {
+			$this->client->acl($file);
+			return true;
+		} catch (S3Exception $e) {
+			return $e->getAwsErrorCode() != "NoSuchKey";
+		}
 	}
 
 }

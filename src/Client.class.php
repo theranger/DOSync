@@ -95,4 +95,15 @@ class Client {
 
 		$this->client->deleteObject(array("Key" => $this->prefix . $path, "Bucket" => $this->bucket));
 	}
+
+	/**
+	 * @param $path
+	 * @throws Exception
+	 */
+	public function acl($path) {
+		if (!$this->client) throw new Exception("required parameters missing, client not initialized");
+		if (empty($this->bucket)) throw new Exception(("could not determine bucket, aborting"));
+
+		$this->client->getObjectAcl(array("Key" => $this->prefix . $path, "Bucket" => $this->bucket));
+	}
 }
