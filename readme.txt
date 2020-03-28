@@ -3,7 +3,7 @@ Contributors: theranger
 Tags: digitalocean, spaces, cloud, storage, object, s3
 Requires at least: 4.6
 Tested up to: 5.3.2
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: Apache 2.0
 License URI: https://www.apache.org/licenses/LICENSE-2.0
 
@@ -23,6 +23,10 @@ When deleting files from media library, they will be removed from Spaces bucket 
 == Screenshots ==
 
 == Changelog ==
+
+= 1.1.0 =
+* Added preliminary support to upload existing files to Spaces
+* Added duplicate file name detection
 
 = 1.0.0 =
 * Initial release

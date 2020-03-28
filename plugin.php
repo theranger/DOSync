@@ -19,7 +19,7 @@
  * Plugin Name: DOSync
  * Plugin URI: https://github.com/theranger/DOSync
  * Description: Plugin to synchronize Wordpress media library to DigitalOcean Spaces container.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: theranger
  * Author URI: https://github.com/theranger
  * License: Apache 2.0
