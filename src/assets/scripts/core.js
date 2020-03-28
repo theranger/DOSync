@@ -16,6 +16,8 @@
 
 const dos_message = jQuery('#dos__message');
 const dos_test_connection = jQuery('.dos__test__connection');
+const dos_sync = jQuery('.dos__sync');
+const dos_sync_log = jQuery('#dos_sync_log');
 
 jQuery(function () {
 
@@ -40,6 +42,31 @@ jQuery(function () {
 			jQuery('html,body').animate({scrollTop: 0}, 1000)
 		})
 
-	})
+	});
 
+	dos_sync.on("click", function () {
+		let pos = 0;
+
+		dos_message.html("<p>Synchronizing...</p>");
+		dos_message.show();
+
+		jQuery.ajax({
+			type: "post",
+			url: ajaxurl,
+			data: {
+				action: "dos_sync"
+			},
+			xhrFields: {
+				onprogress: function (e) {
+					dos_message.html(e.currentTarget.response.slice(pos));
+					pos = e.currentTarget.response.length;
+					dos_message.animate({scrollTop: 1000}, 500);
+				}
+			}
+		}).done(function (data) {
+			dos_message.html(dos_message.html() + "<p><b>Synchronization completed</b></p>");
+		}).fail(function (data) {
+			dos_message.html(dos_message.html() + "<p><b>Synchronization failed:</b> " + data + "</p>");
+		});
+	});
 });
