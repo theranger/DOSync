@@ -1,7 +1,7 @@
 {
 	"name": "ranger/dosync",
 	"type": "plugin",
-	"description": "This WordPress plugin syncs your media library with DigitalOcean Spaces Container.",
+	"description": "Plugin to sync Wordpress media library to DigitalOcean Spaces.",
 	"keywords": [
 		"aws",
 		"s3",
@@ -10,13 +10,13 @@
 		"storage",
 		"cloudfiles"
 	],
-	"homepage": "https://github.com/keeross/DO-Spaces-Wordpress-Sync",
-	"license": "MIT",
+	"homepage": "https://github.com/theranger/DOSync",
+	"license": "Apache 2.0",
 	"authors": [
 		{
-			"name": "keeross",
-			"email": "keeross@dolsen.co",
-			"homepage": "https://github.com/keeross"
+			"name": "theranger",
+			"email": "ranger@risk.ee",
+			"homepage": "https://github.com/theranger"
 		}
 	],
 	"require": {
