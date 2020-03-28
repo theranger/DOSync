@@ -1,5 +1,6 @@
 <div id="dos__message"
-	 class="notice notice-success settings-error hidden"></div>
+	 class="notice notice-success settings-error hidden"
+	 style="max-height: 100pt; overflow-y: scroll;"></div>
 <h1>DigitalOcean Spaces Sync <?php _e('Settings', 'dos'); ?></h1>
 
 <form method="post" action="options.php">
@@ -48,3 +49,8 @@
 	<?php submit_button(); ?>
 
 </form>
+
+<h2>Synchronize Existing Media</h2>
+<p><?php _e('Press Synchronize to move existing files to Spaces. Do not navigate away from this window until synchronizing is finished.', 'dos'); ?></p>
+<input type="button" name="sync" class="button button-primary dos__sync"
+	   value="<?php _e('Synchronize', 'dos'); ?>">

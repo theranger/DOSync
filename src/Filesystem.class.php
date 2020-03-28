@@ -38,7 +38,7 @@ class Filesystem {
 		$this->client = $client;
 
 		if (empty($root["basedir"])) throw new Exception("could not locate upload root directory");
-		$this->root = rtrim($root["basedir"], DIRECTORY_SEPARATOR . " ");
+		$this->root = rtrim($root["basedir"], DIRECTORY_SEPARATOR);
 	}
 
 	/**
@@ -76,4 +76,33 @@ class Filesystem {
 		}
 	}
 
+	/**
+	 * @param $dir
+	 * @param $callback
+	 * @throws Exception
+	 */
+	public function parseDirectory($dir, $callback) {
+		$path = $this->root . DIRECTORY_SEPARATOR . $dir;
+		if (!is_dir($path)) return;
+
+		$dh = opendir($path);
+		if (!$dh) throw new Exception("could not open directory " . $path);
+
+		while (($f = readdir($dh)) !== false) {
+			// Sites directory contains multi-site instances, their content is handled by each site separately.
+			if ($f == "." || $f == ".." || $f == "sites") continue;
+			$callback($dir, $f);
+		}
+	}
+
+	public function isDirectory($dir) {
+		return is_dir($this->root . DIRECTORY_SEPARATOR . $dir);
+	}
+
+	public function getSize($file) {
+		$path = $this->root . DIRECTORY_SEPARATOR . $file;
+		if (is_dir($path)) return 0;
+
+		return stat($path)["size"];
+	}
 }

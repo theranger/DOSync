@@ -39,11 +39,14 @@ use DOSync\Client;
 use DOSync\Filesystem;
 use DOSync\Hook;
 use DOSync\Settings;
+use DOSync\Syncer;
 
 try {
 	$hook = new Hook();
 	$client = new Client(Settings::$endpoint, Settings::$key, Settings::$secret, Settings::$prefix);
-	$attachment = new Attachment(new Filesystem(wp_get_upload_dir(), $client));
+	$filesystem = new Filesystem(wp_get_upload_dir(), $client);
+	$attachment = new Attachment($filesystem);
+	$syncer = new Syncer($filesystem);
 } catch (Exception $e) {
 	show_message("Upload failed: " . $e->getMessage());
 }
@@ -53,6 +56,7 @@ add_action("admin_init", array($hook, "settings"));
 add_action("admin_enqueue_scripts", array($hook, "scripts"));
 
 add_action("wp_ajax_dos_test_connection", array($client, "testConnection"));
+add_action("wp_ajax_dos_sync", array($syncer, "handleSync"));
 
 add_action("add_attachment", array($attachment, "addAttachment"), 10, 1);
 add_action("delete_attachment", array($attachment, "deleteAttachment"), 10, 1);
