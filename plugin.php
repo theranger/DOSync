@@ -27,12 +27,13 @@
  * Domain Path: /src/languages
  */
 
-spl_autoload_register(function ($class_name) {
-	$parts = explode('\\', $class_name);
-	include "src" . DIRECTORY_SEPARATOR . end($parts) . ".class.php";
-});
-
 require_once("vendor/autoload.php");
+require_once("src/Hook.class.php");
+require_once("src/Client.class.php");
+require_once("src/Filesystem.class.php");
+require_once("src/Attachment.class.php");
+require_once("src/Syncer.class.php");
+require_once("src/Settings.class.php");
 
 use DOSync\Attachment;
 use DOSync\Client;
