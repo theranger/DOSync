@@ -77,6 +77,7 @@ class Syncer {
 	private static function log($message, $sleep_sec = 0) {
 		print "<p>$message</p>";
 		ob_flush();
+		flush();
 		sleep($sleep_sec);
 	}
 
