@@ -25,6 +25,11 @@ define("MEGA", 1024 * KILO);
 define("GIGA", 1024 * MEGA);
 define("TERA", 1024 * GIGA);
 
+define("PHP_TIME_LIMIT", 60);
+define("PHP_MEMORY_LIMIT_NAME", "memory_limit");
+define("PHP_MEMORY_LIMIT_VALUE", "512M");
+define("SLEEP_TIME_US", 1000);
+
 class Syncer {
 
 	/**
@@ -47,6 +52,7 @@ class Syncer {
 			}
 
 			self::log("<b>Found $this->fileCount files with total size " . $this->getSize() . "</b>", 3);
+			ini_set(PHP_MEMORY_LIMIT_NAME, PHP_MEMORY_LIMIT_VALUE);
 			$this->syncFiles();
 		} catch (Exception $e) {
 			self::log($e, 5);
@@ -69,6 +75,7 @@ class Syncer {
 		}
 
 		self::log("Scanning " . $path);
+		set_time_limit(PHP_TIME_LIMIT);
 		$this->filesystem->parseDirectory($path, function ($dir, $f) {
 			$this->countFiles($dir . DIRECTORY_SEPARATOR . $f);
 		});
@@ -115,6 +122,8 @@ class Syncer {
 			$this->fileCount--;
 			$this->totalSize -= $size;
 			self::log("Synced " . $path . ", left $this->fileCount files, " . $this->getSize());
+			set_time_limit(PHP_TIME_LIMIT);
+			usleep(SLEEP_TIME_US);
 			return;
 		}
 
