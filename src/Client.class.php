@@ -78,7 +78,7 @@ class Client {
 		$data = array(
 			"Key" => $this->prefix . $path,
 			"Bucket" => $this->bucket,
-			"ContentType" => $contentType,
+			"ContentType" => empty($contentType) ? "application/octet-stream" : $contentType,
 			"ACL" => "public-read"
 		);
 
