@@ -49,8 +49,9 @@ class Filesystem {
 	public function upload($file) {
 		$path = $this->root . DIRECTORY_SEPARATOR . $file;
 		$contentType = wp_check_filetype($path);
+		$contents = file_get_contents($path);
 
-		$this->client->put($file, $contentType["type"], file_get_contents($path));
+		$this->client->put($file, $contentType["type"], $contents);
 		wp_delete_file($path);
 	}
 

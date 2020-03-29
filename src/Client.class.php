@@ -71,7 +71,7 @@ class Client {
 	 * @return string
 	 * @throws Exception
 	 */
-	public function put($path, $contentType, $contents = null) {
+	public function put($path, $contentType, &$contents = null) {
 		if (!$this->client) throw new Exception("required parameters missing, client not initialized");
 		if (empty($this->bucket)) throw new Exception(("could not determine bucket, aborting"));
 
@@ -83,6 +83,7 @@ class Client {
 		);
 
 		$this->client->putObject(empty($contents) ? $data : $data + ["Body" => $contents]);
+		unset($contents);
 	}
 
 	/**
